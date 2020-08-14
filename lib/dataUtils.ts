@@ -2,6 +2,26 @@ const RECENT: number = 30
 
 type Element = { name: string, quantity: number, date: string }
 
+/**
+ * Extract list of app identifiers
+ * TODO - for now just get names... future maybe get img icons etc
+ * @param inputData - data to be formatted
+ * @returns list of IDs
+ */
+export function appify(inputData: Object[]): Object[] {
+  const result: Object[] = new Array(inputData.length) 
+ 
+  for (let i: number = 0; i < inputData.length; i++) {
+    result[i] = { 'name': inputData[i]['static_data']['name'] }
+  }  
+  return result
+}
+
+/**
+ * Transform data from app-based metrics to datetime-based metrics
+ * @param inputData - data to be formatted
+ * @returns Transformed data
+ */
 export function chartify(inputData: Object[]): Object[] {
   const dateMap: Map<string, Element[]> = new Map()
 

@@ -4,7 +4,7 @@ import Chart from '../components/chart'
 import query from '../middleware/db';
 
 import { InferGetStaticPropsType } from 'next'
-import { chartify } from '../lib/dataUtils'
+import { appify, chartify } from '../lib/dataUtils'
 
 const REGEN_HOURS: number = 12;
 const SEC_IN_HOUR: number = 3600;
@@ -15,16 +15,17 @@ export const getStaticProps = async() => {
   return {
     props: { 
       chartData: chartify(res),
+      appData: appify(res),
     },
     // Incremental static regeneration: Next.js 9.5+
     // revalidate: REGEN_HOURS * SEC_IN_HOUR, 
   };
 }
 
-function Home({ chartData }: InferGetStaticPropsType<typeof getStaticProps>) {
+function Home({ appData, chartData }: InferGetStaticPropsType<typeof getStaticProps>) {
 	return (
     <Layout>
-      <Chart chartData={ chartData } />
+      <Chart appData={ appData } chartData={ chartData } />
     </Layout>
   )
 }
