@@ -1,11 +1,10 @@
 import Styles from './header.module.scss'
 
-export const siteTitle = 'Tracula'
+export const siteTitle = 'players.fyi'
 
 function Header() {
   return (
     <div className={Styles.Header}>
-      <img src="/images/tracula-chrome.png" />
       {siteTitle} 
     </div>
   )

@@ -2,7 +2,7 @@
 
 .Header {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
 
   height: 50px;
@@ -10,11 +10,10 @@
 
   padding: 0 20px;
 
-  font-family: $logo-font;
+  font-family: $header-font;
   font-size: 24px;
   font-weight: bold;
   color: $on-secondary;
-  text-transform: uppercase;
 
   background: $highlight;
 

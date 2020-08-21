@@ -1,7 +1,8 @@
 import { stringToRgb } from '../lib/chartUtils';
+import CustomToolTip from './tooltip';
 import React, { PureComponent } from 'react';
 import {
-  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
+  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend
 } from 'recharts';
 
 export default class Chart extends PureComponent<{appData: Object[], chartData: Object[]}, {}> {
@@ -10,7 +11,6 @@ export default class Chart extends PureComponent<{appData: Object[], chartData: 
   }
 
   render() {
-    console.log(this.props.appData)
     return (
       <LineChart
         width={1200}
@@ -23,13 +23,15 @@ export default class Chart extends PureComponent<{appData: Object[], chartData: 
         <CartesianGrid />
         <XAxis dataKey="date" tick={<CustomizedAxisTick/>} />
         <YAxis />
-        <Tooltip itemSorter={item => (-1 * item.value)} />
-        <Legend layout="vertical" verticalAlign="middle" align="right" />
+        {/* <Tooltip itemSorter={item => (-1 * item.value)} /> */}
+        <Tooltip content={<CustomToolTip />} />
+        <Legend layout="vertical" verticalAlign="top" align="right" wrapperStyle={{ right: 20 }} />
         {
           this.props.appData.map((val) => {
-            return (<Line key={`line_${val['name']}`} 
-                          type="monotone" dataKey={`${val['name']}`} 
-                          stroke={`${stringToRgb(val['name'])}`} />)
+            return (<Line key={`line_${val['name']}`}
+                          type="monotone" dataKey={`${val['name']}`}
+                          stroke={`${stringToRgb(val['name'])}`}
+                          dot={false} />)
           })
         }
       </LineChart>
