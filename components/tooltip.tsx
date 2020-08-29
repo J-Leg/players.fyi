@@ -24,7 +24,8 @@ class CustomToolTip extends Component<TooltipProps, BoxSize> {
           <div>{label}</div>
           {
             sortedPayload.map((elem) => {
-              return (<div key={elem.name}>{elem.name + ': ' + elem.value} </div>) 
+              return (<div className={Styles.element}
+                           key={elem.name}>{elem.name + ': ' + elem.value} </div>) 
             })
           }
         </div>
