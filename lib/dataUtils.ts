@@ -81,15 +81,15 @@ function chartify(inputData: Object[], metricKey: string, quantityKey: string): 
 
 /**
  * Javascript map keys are iterared over based on insertion order
- * Construct date map
+ * Construct date map by constructing empty K,V
  * @param metricKey - type of metric 
  */
 function constructDateMap(metricKey: string): Map<string, Element[]> {
   const newDateMap: Map<string, Element[]> = new Map()
   const end = new Date() 
+  const dateIt = new Date()
   switch (metricKey) {
     case 'daily_metrics':
-      var dateIt = new Date()
       dateIt.setDate(end.getDate() - 30)
 
       for (const d: Date = dateIt; d < end; d.setDate(d.getDate()+1)) {
@@ -98,7 +98,6 @@ function constructDateMap(metricKey: string): Map<string, Element[]> {
       }
       break
     case 'metrics':
-      var dateIt = new Date()
       dateIt.setMonth(end.getMonth() - 30)
 
       for (const d: Date = dateIt; d < end; d.setMonth(d.getMonth()+1)) {

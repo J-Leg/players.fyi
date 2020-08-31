@@ -14,7 +14,7 @@ export const getStaticProps = async() => {
   return {
     props: { 
       chartDataDaily: chartifyDaily(res),
-			chartDataMonthlyAvg: chartifyMonthlyAvg(res),
+      chartDataMonthlyAvg: chartifyMonthlyAvg(res),
       appData: appify(res),
     },
     // Incremental static regeneration: Next.js 9.5+
