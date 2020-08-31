@@ -15,7 +15,7 @@ class CustomLegend extends Component<LegendProps, BoxSize> {
 				return bVal - aVal
 		});
 		return (
-			<div className={Styles.tooltip}>
+			<div>
 				<div>{label}</div>
 				{
 					sortedPayload.map((elem) => {

@@ -3,3 +3,10 @@
   border-radius: 5px;
   padding: 10px;
 }
+
+.element {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
