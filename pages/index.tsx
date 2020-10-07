@@ -1,7 +1,7 @@
 import Layout from '../components/layout'
 import Chart from '../components/chart'
 
-import { queryTop } from '../middleware/db'
+import { queryLast } from '../middleware/db'
 
 import { InferGetStaticPropsType } from 'next'
 import { appify, chartifyDaily, chartifyMonthlyAvg } from '../lib/dataUtils'
@@ -10,7 +10,7 @@ const REGEN_HOURS: number = 12;
 const SEC_IN_HOUR: number = 3600;
 
 export const getStaticProps = async() => {
-  const res: Object[] = await queryTop(10)
+  const res: Object[] = await queryLast(10)
   return {
     props: { 
       chartDataDaily: chartifyDaily(res),
