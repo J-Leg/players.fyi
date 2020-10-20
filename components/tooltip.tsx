@@ -1,6 +1,5 @@
 import { TooltipProps, BoxSize, TooltipPayload } from 'recharts';
 import React, { Component } from 'react';
-import Styles from './tooltip.module.scss'
 
 class CustomToolTip extends Component<TooltipProps, BoxSize> { 
   constructor(props: any) {
@@ -20,12 +19,11 @@ class CustomToolTip extends Component<TooltipProps, BoxSize> {
       });
 
       return (
-        <div className={Styles.tooltip}>
+        <div>
           <div>{label}</div>
           {
             sortedPayload.map((elem) => {
-              return (<div className={Styles.element}
-                           key={elem.name}>{elem.name + ': ' + elem.value} </div>) 
+              return (<div key={elem.name}>{elem.name + ': ' + elem.value} </div>) 
             })
           }
         </div>

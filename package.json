@@ -8,16 +8,22 @@
     "start": "next start"
   },
   "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
     "@types/mongodb": "^3.5.25",
     "@types/recharts": "^1.8.14",
+    "@types/styled-components": "^5.1.4",
+    "clsx": "^1.1.1",
     "isomorphic-unfetch": "^3.0.0",
     "mongodb": "3.6.0",
     "next": "9.4",
     "next-connect": "^0.8.1",
+    "next-images": "^1.6.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "recharts": "^1.8.5",
-    "sass": "^1.26.10"
+    "sass": "^1.26.10",
+    "styled-components": "^5.2.0"
   },
   "devDependencies": {
     "@types/react": "^16.9.43",

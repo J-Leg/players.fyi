@@ -15,7 +15,7 @@ async function connect(uri: string) {
 }
 
 export async function queryLast(ceiling: number): Promise<any> {
-  const db: Db = await connect(process.env.PRD_URI)
+  const db: Db = await connect(process.env.DEV_URI)
   const col  = db.collection(process.env.DB_COL_NAME)
 
   let res: Promise<any>[] = await col.find({}).sort({"last_metric.player_count": -1})

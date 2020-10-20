@@ -1,26 +1,20 @@
 import { stringToRgb } from '../lib/chartUtils'
 import CustomToolTip from './tooltip'
 import React, { Fragment, PureComponent } from 'react'
-import Styles from './chart.module.scss'
+import Title from './title'
 import {
-  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend
+  ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend
 } from 'recharts';
 
-export default class Chart extends PureComponent<{appData: Object[], chartData: Object[], chartTitle: string}, {}> {
-  constructor(props: any) {
-    super(props)
-  }
-
-  render() {
-    return (
-      <div className={Styles.container}>
-        <h3>{this.props.chartTitle}</h3>
+function Chart(props: any) {
+  return (
+    <React.Fragment>
+      <Title>Last 30 Days</Title>
+      <ResponsiveContainer width='100%'>
         <LineChart
-          width={1200}
-          height={675}
-          data={this.props.chartData}
+          data={props.chartData}
           margin={{
-            top: 20, right: 50, left: 50, bottom: 100,
+            top: 20, right: 50, left: 50, bottom: 60,
           }}
         >
           <CartesianGrid />
@@ -28,9 +22,8 @@ export default class Chart extends PureComponent<{appData: Object[], chartData: 
           <YAxis />
           {/* <Tooltip itemSorter={item => (-1 * item.value)} /> */}
           <Tooltip content={<CustomToolTip />} />
-          <Legend layout="vertical" verticalAlign="top" align="right" wrapperStyle={{ right: 20}} />
           {
-            this.props.appData.map((val) => {
+            props.appData.map((val) => {
               return (<Line key={`line_${val['name']}`}
                             type="monotone" dataKey={`${val['name']}`}
                             stroke={`${stringToRgb(val['name'])}`}
@@ -38,16 +31,16 @@ export default class Chart extends PureComponent<{appData: Object[], chartData: 
             })
           }
         </LineChart>
-      </div>
-    );
-  }
+      </ResponsiveContainer>
+    </React.Fragment>
+  );
 }
 
-class CustomizedAxisTick extends PureComponent {
+class CustomizedAxisTick extends PureComponent<any> {
   render() {
     const {
-      x, y, stroke, payload,
-    } = this.props;
+      x, y, payload,
+    } = this.props
 
     return (
       <g transform={`translate(${x},${y})`}>
@@ -56,3 +49,5 @@ class CustomizedAxisTick extends PureComponent {
     );
   }
 }
+
+export default Chart

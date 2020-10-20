@@ -1,7 +1,7 @@
-import { LegendProps, BoxSize, TooltipPayload } from 'recharts';
+import { TooltipProps, TooltipPayload } from 'recharts';
 import React, { Component } from 'react';
 
-class CustomLegend extends Component<LegendProps, BoxSize> {
+class CustomLegend extends Component<TooltipProps> {
   constructor(props: any) {
     super(props);
   }
