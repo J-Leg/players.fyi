@@ -2,7 +2,6 @@ import React from 'react'
 import { GetStaticProps } from 'next'
 import { InferGetStaticPropsType } from 'next'
 
-import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
@@ -70,7 +69,7 @@ function LastDays({ appData, chartDataDaily, chartDataMonthlyAvg }: InferGetStat
           <Grid container spacing={3}>
             {/* Chart */}
             <Grid item xs={12}>
-              <Paper className={fixedHeightPaper}>
+              <Paper elevation={0} className={fixedHeightPaper}>
                 <Chart 
                   appData={ appData } 
                   chartData={ chartDataDaily } 
@@ -80,7 +79,7 @@ function LastDays({ appData, chartDataDaily, chartDataMonthlyAvg }: InferGetStat
             </Grid>
             {/* Details */}
             <Grid item xs={12}>
-              <Paper className={classes.paper}>
+              <Paper elevation={0} className={classes.paper}>
                 <Details appData={ appData }/>
               </Paper>
             </Grid>

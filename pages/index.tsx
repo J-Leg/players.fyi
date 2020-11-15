@@ -5,7 +5,7 @@ import Splash from '../components/splash';
 import Baseline from '../components/baseline';
 
 function Home(){
-	return (
+  return (
     <React.Fragment>
       <Baseline/> 
       <main>
