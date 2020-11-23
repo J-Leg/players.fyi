@@ -1,6 +1,5 @@
 import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
-import Paper from '@material-ui/core/Paper';
 import { TooltipProps, TooltipPayload } from 'recharts'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography';
@@ -15,12 +14,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     maxWidth: '400px',
     alignItems: 'center',
   },
-  paper: {
+  value: {
     textAlign: 'right',
   },
-  typography: {
-    paddingBottom: 8,
-  }
 }));
 
 const CustomTooltip: any = function (props: TooltipProps): any {
@@ -38,15 +34,17 @@ const CustomTooltip: any = function (props: TooltipProps): any {
 
   return (
     <Box boxShadow={3} className={classes.tooltip}>
-      <Typography className={classes.typography}>{label}</Typography>
       <Grid container spacing={1}>
+        <Grid item xs={12}>
+          <Typography>{label}</Typography>
+        </Grid>
         {
           sortedPayload.map((elem) => {
             return (
               <Grid container spacing={1}>
                 <Grid item xs={10}>{elem.name}</Grid>
                 <Grid item xs={2}>
-                  <div className={classes.paper}>{elem.value}</div>
+                  <div className={classes.value}>{elem.value}</div>
                 </Grid>
               </Grid>
             )
