@@ -9,6 +9,9 @@ const useStyles = makeStyles((theme: Theme) => ({
   button: {
     color: theme.palette.secondary.dark,
   },
+  buttonText: {
+    paddingTop: 2,
+  },
 }));
 
 function Splash() {
@@ -19,20 +22,18 @@ function Splash() {
         <Image src="/images/jugg.png" width={280} height={390}/>
       </Grid>
       <Grid item xs={12}>
-        <Typography color='textPrimary' variant="h1" component="h2" gutterBottom>
-          players.fyi
-        </Typography>
+        <Typography color='textPrimary' variant="h1" component="h2" gutterBottom>players.fyi</Typography>
       </Grid>
       <Grid item xs={12}>
         <Grid container spacing={1}>
           <Grid item xs>
             <Button variant="outlined" href="/stats/lastDays" className={classes.button}> 
-              <Typography noWrap>Last 30 Days</Typography>
+              <Typography className={classes.buttonText} noWrap>Last 30 Days</Typography>
             </Button>
           </Grid>
           <Grid item xs>
             <Button variant="outlined" href="/stats/lastDays" className={classes.button}>
-              <Typography noWrap>Last 12 Months</Typography>
+              <Typography className={classes.buttonText} noWrap>Last 12 Months</Typography>
             </Button>
           </Grid>
         </Grid>
