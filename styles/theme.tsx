@@ -5,18 +5,26 @@ const theme = createMuiTheme({
   palette: {
     type: 'dark',
     primary: {
-      main: '#14274e',
+      main: '#333456',
     },
     secondary: {
-      main: '#f1f6f9',
+      main: '#16213e',
+      dark: '#ffffff',
     },
     background: {
-      default: '#394867',
-      paper: '#394867'
+      default: '#1a1a2e',
+      paper: '#1a1a2e',
     },
     text: {
-      primary: '#fffff',
+      primary: '#ffffff',
+      secondary: '#f1f6f9',
     }
+  },
+  typography: {
+    fontFamily: [
+      'Overpass Mono',
+      'monospace',
+    ].join(','),
   },
 });
 

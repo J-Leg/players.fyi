@@ -46,7 +46,7 @@ const CustomTooltip: any = function (props: TooltipProps): any {
               <Grid container spacing={1}>
                 <Grid item xs={10}>{elem.name}</Grid>
                 <Grid item xs={2}>
-                  <Paper className={classes.paper}>{elem.value}</Paper>
+                  <div className={classes.paper}>{elem.value}</div>
                 </Grid>
               </Grid>
             )

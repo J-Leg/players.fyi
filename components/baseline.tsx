@@ -12,7 +12,7 @@ import SearchIcon from '@material-ui/icons/Search'
 
 import { mainListItems } from './listItems';
 
-const title = '<players.fyi/>'
+const title = '{ players.fyi }'
 const drawerWidth = 200;
 
 const useStyles = makeStyles((theme) => ({
@@ -35,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
+    color: theme.palette.secondary.main,
   },
   appBarShift: {
     marginLeft: drawerWidth,
@@ -119,9 +120,10 @@ const useStyles = makeStyles((theme) => ({
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'center',
+    color: theme.palette.secondary.dark,
 	},
 	inputRoot: {
-		color: 'inherit',
+		color: theme.palette.text.primary,
 	},
 	inputInput: {
 		padding: theme.spacing(1, 1, 1, 0),
@@ -154,7 +156,6 @@ function Baseline() {
         <Toolbar className={classes.toolbar}>
           <IconButton
             edge="start"
-            color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
@@ -163,7 +164,7 @@ function Baseline() {
           </IconButton>
           <div className={classes.title}>
             <Typography >
-              <Button color="secondary" href="/" className={classes.titleButton}>
+              <Button href="/" className={classes.titleButton}>
                   {title}
               </Button>
             </Typography>
@@ -182,15 +183,15 @@ function Baseline() {
             />
           </div>
           <Tooltip title="GitHub Repo">
-            <IconButton color="inherit">
-              <Badge color="secondary">
+            <IconButton>
+              <Badge>
                 <GitHubIcon />
               </Badge>
             </IconButton>
           </Tooltip>
           <Tooltip title="Report a Bug">
-            <IconButton color="inherit">
-              <Badge color="secondary">
+            <IconButton>
+              <Badge>
                 <BugReportIcon />
               </Badge>
             </IconButton>
