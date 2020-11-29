@@ -2,8 +2,8 @@ import React from 'react'
 import clsx from 'clsx'
 
 import { fade, makeStyles } from '@material-ui/core/styles'
-import { AppBar, Badge, Button, Divider, Drawer, IconButton, InputBase, List, Toolbar, Tooltip, Typography } from '@material-ui/core'
-
+import { AppBar, Badge, Button, Divider, Drawer, IconButton,
+  InputBase, List, Toolbar, Tooltip, Typography } from '@material-ui/core'
 import BugReportIcon from '@material-ui/icons/BugReport'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import GitHubIcon from '@material-ui/icons/GitHub'
@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'none',
   },
   title: {
-    flexGrow: 1 
+    flexGrow: 1
   },
   drawerPaper: {
     position: 'relative',
@@ -97,51 +97,51 @@ const useStyles = makeStyles((theme) => ({
   fixedHeight: {
     height: 560,
   },
-	search: {
-		position: 'relative',
-		borderRadius: theme.shape.borderRadius,
-		backgroundColor: fade(theme.palette.common.white, 0.15),
-		'&:hover': {
-			backgroundColor: fade(theme.palette.common.white, 0.25),
-		},
-		marginLeft: 0,
-		marginRight: theme.spacing(2),
-		width: '100%',
-		[theme.breakpoints.up('sm')]: {
-			marginLeft: theme.spacing(1),
-			width: 'auto',
-		},
-	},
-	searchIcon: {
-		padding: theme.spacing(0, 2),
-		height: '100%',
-		position: 'absolute',
-		pointerEvents: 'none',
-		display: 'flex',
-		alignItems: 'center',
-		justifyContent: 'center',
+  search: {
+    position: 'relative',
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: fade(theme.palette.common.white, 0.15),
+    '&:hover': {
+      backgroundColor: fade(theme.palette.common.white, 0.25),
+    },
+    marginLeft: 0,
+    marginRight: theme.spacing(2),
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      marginLeft: theme.spacing(1),
+      width: 'auto',
+    },
+  },
+  searchIcon: {
+    padding: theme.spacing(0, 2),
+    height: '100%',
+    position: 'absolute',
+    pointerEvents: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     color: theme.palette.secondary.dark,
-	},
-	inputRoot: {
-		color: theme.palette.text.primary,
-	},
-	inputInput: {
-		padding: theme.spacing(1, 1, 1, 0),
-		// vertical padding + font size from searchIcon
-		paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-		transition: theme.transitions.create('width'),
-		width: '100%',
-		[theme.breakpoints.up('sm')]: {
-			width: '12ch',
-			'&:focus': {
-				width: '20ch',
-			},
-		},
-	},
+  },
+  inputRoot: {
+    color: theme.palette.text.primary,
+  },
+  inputInput: {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      width: '12ch',
+      '&:focus': {
+        width: '20ch',
+      },
+    },
+  },
 }));
 
 function Baseline() {
-	const classes = useStyles();
+  const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -185,14 +185,15 @@ function Baseline() {
           <Tooltip title="GitHub Repo">
             <IconButton>
               <Badge>
-                <GitHubIcon />
+                <GitHubIcon onClick={event => window.location.href='https://github.com/J-Leg/players.fyi'} />
               </Badge>
             </IconButton>
           </Tooltip>
-          <Tooltip title="Report a Bug">
+          <Tooltip title="Found a bug?">
             <IconButton>
               <Badge>
-                <BugReportIcon />
+                <BugReportIcon
+                  onClick={event => window.location.href='https://github.com/J-Leg/players.fyi/issues/new'} />
               </Badge>
             </IconButton>
           </Tooltip>
@@ -215,6 +216,6 @@ function Baseline() {
       </Drawer>
     </div>
   );
-} 
+}
 
 export default Baseline;

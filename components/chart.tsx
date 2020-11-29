@@ -2,8 +2,8 @@ import React, { PureComponent } from 'react'
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 import Typography from '@material-ui/core/Typography';
 
-import { stringToRgb } from '../lib/chartUtils'
-import CustomTooltip from './tooltip'
+import { stringToRgb } from 'lib/chartUtils'
+import CustomTooltip from 'components/tooltip'
 
 function Chart(props: any) {
   return (

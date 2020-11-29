@@ -17,6 +17,7 @@
 
 # misc
 .DS_Store
+public/site.webmanifest
 
 # debug
 npm-debug.log*

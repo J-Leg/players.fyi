@@ -9,12 +9,12 @@ import { makeStyles } from '@material-ui/core/styles'
 
 import clsx from 'clsx';
 
-import { queryLast } from '../../middleware/db'
-import { appify, chartifyDaily, chartifyMonthlyAvg } from '../../lib/dataUtils'
+import { queryLast } from 'middleware/db'
+import { appify, chartifyDaily, chartifyMonthlyAvg } from 'lib/dataUtils'
 
-import Chart from '../../components/chart'
-import Details from '../../components/details'
-import Baseline from '../../components/baseline'
+import Chart from 'components/chart'
+import Details from 'components/details'
+import Baseline from 'components/baseline'
 
 const REGEN_HOURS: number = 12;
 const SEC_IN_HOUR: number = 3600;
@@ -22,7 +22,7 @@ const SEC_IN_HOUR: number = 3600;
 export const getStaticProps: GetStaticProps = async() => {
   const res: Object[] = await queryLast(10)
   return {
-    props: { 
+    props: {
       chartDataDaily: chartifyDaily(res),
       chartDataMonthlyAvg: chartifyMonthlyAvg(res),
       appData: appify(res),
@@ -67,17 +67,15 @@ function LastDays({ appData, chartDataDaily, chartDataMonthlyAvg }: InferGetStat
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
-            {/* Chart */}
             <Grid item xs={12}>
               <Paper elevation={0} className={fixedHeightPaper}>
-                <Chart 
-                  appData={ appData } 
-                  chartData={ chartDataDaily } 
+                <Chart
+                  appData={ appData }
+                  chartData={ chartDataDaily }
                   chartTitle={ days30 }
                 />
               </Paper>
             </Grid>
-            {/* Details */}
             <Grid item xs={12}>
               <Paper elevation={0} className={classes.paper}>
                 <Details appData={ appData }/>
@@ -88,5 +86,5 @@ function LastDays({ appData, chartDataDaily, chartDataMonthlyAvg }: InferGetStat
       </main>
     </React.Fragment>
   );
-} 
+}
 export default LastDays;
