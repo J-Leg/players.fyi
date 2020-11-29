@@ -9,8 +9,9 @@ const useStyles = makeStyles((theme: Theme) => ({
   button: {
     color: theme.palette.secondary.dark,
   },
-  buttonText: {
-    paddingTop: 2,
+  title: {
+    fontWeight: "lighter",
+    color: theme.palette.text.primary,
   },
 }));
 
@@ -19,21 +20,21 @@ function Splash() {
   return (
     <Grid container direction="column" alignItems="center" justify="center" spacing={2} style={{ minHeight: '100vh' }}>
       <Grid item xs={12}>
-        <Image src="/images/jugg.png" width={280} height={390}/>
+        <Image src="/images/geometric_yurnero.png" width={280} height={390}/>
       </Grid>
       <Grid item xs={12}>
-        <Typography color='textPrimary' variant="h1" component="h2" gutterBottom>players.fyi</Typography>
+        <Typography color='textPrimary' variant="h1" gutterBottom>players.fyi</Typography>
       </Grid>
       <Grid item xs={12}>
         <Grid container spacing={1}>
           <Grid item xs>
             <Button variant="outlined" href="/stats/lastDays" className={classes.button}> 
-              <Typography className={classes.buttonText} noWrap>Last 30 Days</Typography>
+              <Typography noWrap>Last 30 Days</Typography>
             </Button>
           </Grid>
           <Grid item xs>
             <Button variant="outlined" href="/stats/lastDays" className={classes.button}>
-              <Typography className={classes.buttonText} noWrap>Last 12 Months</Typography>
+              <Typography noWrap>Last 12 Months</Typography>
             </Button>
           </Grid>
         </Grid>

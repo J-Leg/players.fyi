@@ -22,9 +22,11 @@ const theme = createMuiTheme({
   },
   typography: {
     fontFamily: [
-      'Overpass Mono',
-      'monospace',
+      'iosevka-extended-medium',
     ].join(','),
+    h1: {
+      fontFamily: "iosevka-thin",
+    },
   },
 });
 
