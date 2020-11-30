@@ -1,38 +1,58 @@
-import { TooltipProps, BoxSize, TooltipPayload } from 'recharts';
-import React, { Component } from 'react';
-import Styles from './tooltip.module.scss'
+import Box from '@material-ui/core/Box'
+import Grid from '@material-ui/core/Grid'
+import { TooltipProps, TooltipPayload } from 'recharts'
+import { makeStyles, Theme } from '@material-ui/core/styles'
+import Typography from '@material-ui/core/Typography';
 
-class CustomToolTip extends Component<TooltipProps, BoxSize> { 
-  constructor(props: any) {
-    super(props);
-  }
+const useStyles = makeStyles((theme: Theme) => ({
+  tooltip: {
+    background: '#000000',
+    color: theme.palette.text.secondary,
+    borderRadius: 16, 
+    padding: 18,
+    opacity: 0.75,
+    maxWidth: '400px',
+    alignItems: 'center',
+  },
+  value: {
+    textAlign: 'right',
+  },
+}));
 
-  render() {
-    if (this.props.active) {
-      const { payload, label } = this.props
+const CustomTooltip: any = function (props: TooltipProps): any {
+  if (!props.active) { return null }
+  const { payload, label } = props
+  const classes = useStyles()
 
-      // Sort in descending order
-      const sortedPayload: TooltipPayload[] = payload.slice().sort((a, b) => {
-        // Type assertion to keep compiler happy
-        let aVal = a.value as number
-        let bVal = b.value as number
-        return bVal - aVal
-      });
+  // Sort in descending order
+  const sortedPayload: TooltipPayload[] = payload.slice().sort((a, b) => {
+    // Type assertion to keep compiler happy
+    let aVal = a.value as number
+    let bVal = b.value as number
+    return bVal - aVal
+  });
 
-      return (
-        <div className={Styles.tooltip}>
-          <div>{label}</div>
-          {
-            sortedPayload.map((elem) => {
-              return (<div className={Styles.element}
-                           key={elem.name}>{elem.name + ': ' + elem.value} </div>) 
-            })
-          }
-        </div>
-      );
-    }
-    return null;
-  }
+  return (
+    <Box boxShadow={3} className={classes.tooltip}>
+      <Grid container spacing={1}>
+        <Grid item xs={12}>
+          <Typography>{label}</Typography>
+        </Grid>
+        {
+          sortedPayload.map((elem) => {
+            return (
+              <Grid container spacing={1}>
+                <Grid item xs={10}>{elem.name}</Grid>
+                <Grid item xs={2}>
+                  <div className={classes.value}>{elem.value}</div>
+                </Grid>
+              </Grid>
+            )
+          })
+        }
+      </Grid>
+    </Box>
+  );
 }
 
-export default CustomToolTip
+export default CustomTooltip
