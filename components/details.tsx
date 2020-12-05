@@ -2,6 +2,11 @@ import React from 'react';
 import { Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 
+/**
+ * Component to display supplementary information
+ *
+ * @Component
+ */
 export default function Details({ appData }) {
   return (
     <React.Fragment>

@@ -4,14 +4,20 @@ import Typography from '@material-ui/core/Typography';
 
 import { stringToRgb } from 'lib/chartUtils'
 import CustomTooltip from 'components/tooltip'
+import { Title } from '@material-ui/icons';
 
-function Chart(props: any) {
+/**
+ * Component for displaying data on a multi-line graph
+ *
+ * @component
+ */
+function Chart(props: { title: string, appData: object[], chartData: object[] }) {
   return (
     <React.Fragment>
-      <Typography component="h2" variant="h6" color="textPrimary" gutterBottom>Last 30 Days</Typography>
+      <Typography component="h2" variant="h6" color="textPrimary" gutterBottom>{ props.title }</Typography>
       <ResponsiveContainer width='100%'>
         <LineChart
-          data={props.chartData}
+          data={ props.chartData }
           margin={{ top: 20, right: 50, left: 50, bottom: 60 }}>
           <CartesianGrid />
           <XAxis stroke='#ffffff' dataKey="date" tick={<CustomizedAxisTick/>} />
