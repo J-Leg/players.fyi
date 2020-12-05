@@ -15,6 +15,11 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
+/**
+ * Component for the focal point of a landing page
+ *
+ * @Component
+ */
 function Splash() {
   const classes = useStyles()
   return (
@@ -28,12 +33,12 @@ function Splash() {
       <Grid item xs={12}>
         <Grid container spacing={1}>
           <Grid item xs>
-            <Button variant="outlined" href="/stats/lastDays" className={classes.button}> 
+            <Button variant="outlined" href="/stats/lastDays" className={classes.button}>
               <Typography noWrap>Last 30 Days</Typography>
             </Button>
           </Grid>
           <Grid item xs>
-            <Button variant="outlined" href="/stats/lastDays" className={classes.button}>
+            <Button variant="outlined" href="/stats/lastMonths" className={classes.button}>
               <Typography noWrap>Last 12 Months</Typography>
             </Button>
           </Grid>

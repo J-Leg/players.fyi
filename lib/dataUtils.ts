@@ -4,7 +4,6 @@ type Element = { name: string, quantity: number, date: string }
 
 /**
  * Extract list of app identifiers
- * TODO - for now just get names... future maybe get img icons etc
  * @param inputData - data to be formatted
  * @returns list of IDs
  */

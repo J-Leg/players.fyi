@@ -3,7 +3,7 @@ import { GetStaticProps } from 'next'
 import { InferGetStaticPropsType } from 'next'
 
 import { queryLast } from 'middleware/db'
-import { appify, chartifyDaily } from 'lib/dataUtils'
+import { appify, chartifyMonthlyAvg } from 'lib/dataUtils'
 
 import Template from 'components/template'
 
@@ -14,15 +14,15 @@ export const getStaticProps: GetStaticProps = async() => {
   const res: Object[] = await queryLast(10)
   return {
     props: {
-      chartData: chartifyDaily(res),
+      chartData: chartifyMonthlyAvg(res),
       appData: appify(res),
     },
   };
 }
 
-function LastDays({ appData, chartData }: InferGetStaticPropsType<typeof getStaticProps>) {
+function LastMonths({ appData, chartData }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
-    <Template title={ "Last 30 Days" } appData={ appData } chartData={ chartData }/>
+    <Template title={ "Last 12 Months" } appData={ appData } chartData={ chartData }/>
   );
 }
-export default LastDays;
+export default LastMonths;

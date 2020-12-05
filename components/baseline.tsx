@@ -140,6 +140,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+/**
+ * Base component used to display everything on the peripherals (Used on all pages)
+ * E.g. Appbar, Searchbar, Side-bar, etc...
+ *
+ * @Component
+ */
 function Baseline() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);

@@ -4,7 +4,7 @@
  * @returns 6-digit hex
  */
 export function stringToRgb(input: string): string {
-	return intToRGB(hashCode(input))
+  return intToRGB(hashCode(input))
 }
 
 /**
@@ -14,11 +14,11 @@ export function stringToRgb(input: string): string {
  * @returns hash code
  */
 function hashCode(input: string): number { 
-	var hash = 0;
-	for (var i = 0; i < input.length; i++) {
-		 hash = input.charCodeAt(i) + ((hash << 5) - hash);
-	}
-	return hash;
+  var hash = 0;
+  for (var i = 0; i < input.length; i++) {
+    hash = input.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  return hash;
 } 
 
 /**
@@ -27,11 +27,11 @@ function hashCode(input: string): number {
  * @returns 6-digit hex
  */
 function intToRGB(input: number){
-	var result: string = '#'
-	for (var i = 0; i < 3; i++) {
-		var value = (input >> (i * 8)) & 0xFF;
-		result += ('00' + value.toString(16)).substr(-2);
-	}
-	return result
+  var result: string = '#'
+  for (var i = 0; i < 3; i++) {
+    var value = (input >> (i * 8)) & 0xFF;
+    result += ('00' + value.toString(16)).substr(-2);
+  }
+  return result
 }
 

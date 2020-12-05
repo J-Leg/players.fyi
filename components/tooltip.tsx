@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   tooltip: {
     background: '#000000',
     color: theme.palette.text.secondary,
-    borderRadius: 16, 
+    borderRadius: 16,
     padding: 18,
     opacity: 0.75,
     maxWidth: '400px',
@@ -19,6 +19,11 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
+/**
+ * Component for a customised tooltip to use on a recharts graph
+ *
+ * @Component
+ */
 const CustomTooltip: any = function (props: TooltipProps): any {
   if (!props.active) { return null }
   const { payload, label } = props
