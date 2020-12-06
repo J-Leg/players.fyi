@@ -4,7 +4,6 @@ import Typography from '@material-ui/core/Typography';
 
 import { stringToRgb } from 'lib/chartUtils'
 import CustomTooltip from 'components/tooltip'
-import { Title } from '@material-ui/icons';
 
 /**
  * Component for displaying data on a multi-line graph

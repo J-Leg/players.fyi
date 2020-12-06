@@ -1,4 +1,3 @@
-const RECENT: number = 30
 
 type Element = { name: string, quantity: number, date: string }
 
@@ -8,8 +7,8 @@ type Element = { name: string, quantity: number, date: string }
  * @returns list of IDs
  */
 export function appify(inputData: Object[]): Object[] {
-  const result: Object[] = new Array(inputData.length) 
- 
+  const result: Object[] = new Array(inputData.length)
+
   for (let i: number = 0; i < inputData.length; i++) {
     result[i] = { 'name': inputData[i]['static_data']['name'] }
   }
@@ -17,25 +16,25 @@ export function appify(inputData: Object[]): Object[] {
 }
 
 /**
- * Construct daily chart data
+ * Construct daily chart data (last 30 Days)
  * @param inputData - data to be formatted
  * @returns Transformed data
  */
 export function chartifyDaily(inputData: Object[]): Object[] {
-  const metricKey: string = 'daily_metrics'
+  const metricType: string = 'daily_metrics'
   const quantityKey: string = 'player_count'
-  return chartify(inputData, metricKey, quantityKey) 
+  return chartify(inputData, metricType, quantityKey, 30)
 }
 
 /**
- * Construct monthly average chart data
+ * Construct monthly average chart data (last 12 months)
  * @param inputData - data to be formatted
  * @returns Transformed data
  */
 export function chartifyMonthlyAvg(inputData: Object[]): Object[] {
-  const metricKey: string = 'metrics'
+  const metricType: string = 'metrics'
   const quantityKey: string = 'avgplayers'
-  return chartify(inputData, metricKey, quantityKey) 
+  return chartify(inputData, metricType, quantityKey, 12)
 }
 
 /**
@@ -44,9 +43,9 @@ export function chartifyMonthlyAvg(inputData: Object[]): Object[] {
  * @returns Transformed data
  */
 export function chartifyMonthlyPeak(inputData: Object[]): Object[] {
-  const metricKey: string = 'metrics'
+  const metricType: string = 'metrics'
   const quantityKey: string = 'peak'
-  return chartify(inputData, metricKey, quantityKey) 
+  return chartify(inputData, metricType, quantityKey, 12)
 }
 
 /**
@@ -54,59 +53,92 @@ export function chartifyMonthlyPeak(inputData: Object[]): Object[] {
  * @param inputData - data to be formatted
  * @returns Transformed data
  */
-function chartify(inputData: Object[], metricKey: string, quantityKey: string): Object[] {
-  const dateMap: Map<string, Element[]> = constructDateMap(metricKey) 
+function chartify(inputData: Object[], metricType: string, quantityKey: string, tailLength: number): Object[] {
+  const dateMap: Map<string, Element[]> = constructDateMap(metricType, tailLength)
   for (const app of inputData) {
-    for (const metric of app[metricKey].slice(-1 * RECENT)) {
+    for (const metric of app[metricType].slice(-1 * tailLength)) {
       const date: Date = metric['date']
-      const key: string = (metricKey == 'daily_metrics' ? date.getUTCDate() + '/' : '')
-                          + (date.getUTCMonth()+1) + '/' + date.getUTCFullYear()      
+      const key: string = buildDateKey(date, metricType)
       if (!dateMap.has(key)) { continue }
       dateMap.get(key).push({name: app['static_data']['name'], quantity: metric[quantityKey], date: key})
     }
   }
   const result: Object[] = []
   for (const [key, value] of dateMap) {
-    const chartElem: Object = {} 
-    chartElem['date'] = key 
+    const chartElem: Object = {}
+    chartElem['date'] = key
 
     for (const app of value) {
       chartElem[app['name']] = app['quantity']
     }
     result.push(chartElem)
   }
-  return result 
+  return result
 }
 
 /**
- * Javascript map keys are iterared over based on insertion order
- * Construct date map by constructing empty K,V
- * @param metricKey - type of metric 
+ * Construct all the keys (dates) for the date map
+ * @param metricType - type of metric
  */
-function constructDateMap(metricKey: string): Map<string, Element[]> {
+function constructDateMap(metricType: string, tailLength: number): Map<string, Element[]> {
   const newDateMap: Map<string, Element[]> = new Map()
-  const end = new Date() 
+
+  const end = new Date()
   const dateIt = new Date()
-  switch (metricKey) {
+
+  switch (metricType) {
     case 'daily_metrics':
       dateIt.setDate(end.getDate() - 30)
-
       for (const d: Date = dateIt; d < end; d.setDate(d.getDate()+1)) {
-        const newKey: string = d.getUTCDate() + '/' + (d.getUTCMonth()+1) + '/' + d.getUTCFullYear()
-        newDateMap.set(newKey, [])
+        const newKey: string = buildDateKey(d, metricType)
+        if (newKey) {
+          newDateMap.set(newKey, [])
+        }
       }
       break
     case 'metrics':
-      dateIt.setMonth(end.getMonth() - 30)
-
+      dateIt.setMonth(end.getMonth() - 12)
       for (const d: Date = dateIt; d < end; d.setMonth(d.getMonth()+1)) {
-        const newKey: string = d.getUTCMonth()+1 + '/' + d.getUTCFullYear()
-        newDateMap.set(newKey, [])
+        const newKey: string = buildDateKey(d, metricType)
+        if (newKey) {
+          newDateMap.set(newKey, [])
+        }
       }
       break
     default:
-      console.warn("Unknown key" + metricKey)
+      console.warn("Unknown key" + metricType)
       return newDateMap
   }
   return newDateMap
+}
+
+/**
+ * Build formatted date key:
+ * 7-char variant (monthly)
+ * 10-char variant (daily)
+ * @param inputDate
+ */
+function buildDateKey(inputDate: Date, metricType: string): string {
+  const dayVal: number = inputDate.getUTCDate()
+  const day: string = dayVal < 10 ? '0'+dayVal.toString() : dayVal.toString()
+
+  // Month values are 0-indexed
+  const monthVal: number = inputDate.getUTCMonth()+1
+  const month: string = monthVal < 10 ? '0'+monthVal.toString() : monthVal.toString()
+
+  const year: string = inputDate.getUTCFullYear().toString()
+
+  var resultKey: string
+
+  switch(metricType) {
+    case 'daily_metrics':
+      resultKey = day + '/' + month + '/' + year
+      break
+    case 'metrics':
+      resultKey = month + '/' + year
+      break
+    default:
+      console.warn("Unknown key: " + metricType)
+  }
+  return resultKey
 }
