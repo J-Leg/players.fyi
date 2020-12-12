@@ -24,7 +24,11 @@ const theme = createMuiTheme({
       'iosevka-extended-medium',
     ].join(','),
     h1: {
-      fontFamily: "iosevka-thin",
+      fontFamily: 'iosevka-thin',
+    },
+    subtitle1: {
+      fontSize: 14,
+      fontFamily: 'iosevka-thin',
     },
   },
 });
