@@ -1,0 +1,15 @@
+<svg width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+
+ <title/>
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="402" width="582" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <polyline stroke-width="2px" stroke-linejoin="round" stroke-linecap="round" stroke="#ffffff" fill="none" id="svg_1" points="8 7 8 4 12 4 12 7" class="cls-1"/>
+  <polyline stroke-width="2px" stroke-linejoin="round" stroke-linecap="round" stroke="#ffffff" fill="none" id="svg_2" points="12 11 12 29 8 29 8 11" class="cls-1"/>
+  <polygon stroke-width="2px" stroke-linejoin="round" stroke-linecap="round" stroke="#ffffff" fill="none" id="svg_3" points="16 11 5 11 8 7 21 7 25 6 27 13 19 19 17 16 18 13 16 11" class="cls-1"/>
+  <line stroke-width="2px" stroke-linejoin="round" stroke-linecap="round" stroke="#ffffff" fill="none" id="svg_4" y2="20.25" y1="20.25" x2="12" x1="8" class="cls-1"/>
+ </g>
+</svg>

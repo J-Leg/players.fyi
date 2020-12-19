@@ -1,5 +1,6 @@
 import React from 'react'
 import clsx from 'clsx'
+import Image from 'next/image'
 
 import { fade, makeStyles } from '@material-ui/core/styles'
 import { AppBar, Badge, Button, Divider, Drawer, IconButton,
@@ -11,9 +12,6 @@ import MenuIcon from '@material-ui/icons/Menu'
 import SearchIcon from '@material-ui/icons/Search'
 
 import { mainListItems } from './listItems';
-
-const title = '{ players.fyi }'
-const drawerWidth = 200;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -49,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
   drawerPaper: {
     position: 'relative',
     whiteSpace: 'nowrap',
-    width: drawerWidth,
+    width: 200,
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
@@ -115,6 +113,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const iconSize = 30
+const leftBrace = "{"
+const rightBrace = "}"
+
 /**
  * Base component used to display everything on the peripherals (Used on all pages)
  * E.g. Appbar, Searchbar, Side-bar, etc...
@@ -145,7 +147,9 @@ function Baseline() {
           <div className={classes.title}>
             <Typography >
               <Button href="/" className={classes.titleButton}>
-                  {title}
+                {leftBrace}
+                <Image src="/quelling_blade_invert.svg" width={iconSize} height={iconSize}/>
+                {rightBrace}
               </Button>
             </Typography>
           </div>
