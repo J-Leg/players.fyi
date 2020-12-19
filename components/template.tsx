@@ -48,27 +48,25 @@ function Template(props: { title: string, appData: object[], chartData: object[]
   return (
     <React.Fragment>
       <Baseline/>
-      <main className={classes.content}>
-        <div className={classes.appBarSpacer} />
-        <Container maxWidth="lg" className={classes.container}>
-          <Grid container spacing={3}>
-            <Grid item xs={12}>
-              <Paper elevation={0} className={fixedHeightPaper}>
-                <Chart
-                  title={ props.title }
-                  appData={ props.appData }
-                  chartData={ props.chartData }
-                />
-              </Paper>
-            </Grid>
-            <Grid item xs={12}>
-              <Paper elevation={0} className={classes.paper}>
-                <Details appData={ props.appData }/>
-              </Paper>
-            </Grid>
+      <div className={classes.appBarSpacer} />
+      <Container maxWidth="lg" className={classes.container}>
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <Paper elevation={0} className={fixedHeightPaper}>
+              <Chart
+                title={ props.title }
+                appData={ props.appData }
+                chartData={ props.chartData }
+              />
+            </Paper>
           </Grid>
-        </Container>
-      </main>
+          <Grid item xs={12}>
+            <Paper elevation={0} className={classes.paper}>
+              <Details appData={ props.appData }/>
+            </Paper>
+          </Grid>
+        </Grid>
+      </Container>
     </React.Fragment>
   );
 }

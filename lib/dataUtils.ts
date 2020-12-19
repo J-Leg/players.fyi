@@ -10,7 +10,7 @@ export function appify(inputData: Object[]): Object[] {
   const result: Object[] = new Array(inputData.length)
 
   for (let i: number = 0; i < inputData.length; i++) {
-    result[i] = { 'name': inputData[i]['static_data']['name'] }
+    result[i] = { 'name': inputData[i]['static_data']['name'], 'hide': false}
   }
   return result
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
+import { Table, TableBody, TableCell, TableRow } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 
 /**
@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 export default function Details({ appData }) {
   return (
     <React.Fragment>
-      <Typography component="h2" variant="h6" color="textPrimary" gutterBottom>Details</Typography>
+      <Typography component="h2" variant="h6" color="textPrimary" gutterBottom>Games</Typography>
       <Table size="small">
         <TableBody>
           {appData.map((row: any) => (

@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
+import { Legend, ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 import Typography from '@material-ui/core/Typography';
 
 import { stringToRgb } from 'lib/chartUtils'
@@ -25,9 +25,12 @@ function Chart(props: { title: string, appData: object[], chartData: object[] })
           {
             props.appData.map((val: any) => {
               return (<Line key={`line_${val['name']}`}
-                            type="monotone" dataKey={`${val['name']}`}
-                            stroke={`${stringToRgb(val['name'])}`}
-                            dot={false} />)
+                            type="monotone" 
+                            dataKey={val['name']}
+                            stroke={stringToRgb(val['name'])}
+                            dot={false}
+                            hide={val['hide']}
+                            />)
             })
           }
         </LineChart>
