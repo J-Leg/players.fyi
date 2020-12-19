@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
   },
   toolbar: {
-    paddingRight: 24, // keep right padding when drawer closed
+    paddingRight: 24,
   },
   toolbarIcon: {
     display: 'flex',
@@ -30,20 +30,8 @@ const useStyles = makeStyles((theme) => ({
     ...theme.mixins.toolbar,
   },
   appBar: {
-    zIndex: theme.zIndex.drawer + 1,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    color: theme.palette.secondary.main,
-  },
-  appBarShift: {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
+    backgroundColor: theme.palette.background.default,
+    height: 0
   },
   titleButton: {
     textTransform: 'none',
@@ -78,24 +66,11 @@ const useStyles = makeStyles((theme) => ({
       width: theme.spacing(9),
     },
   },
-  appBarSpacer: theme.mixins.toolbar,
-  content: {
-    flexGrow: 1,
-    height: '100%',
-    overflow: 'auto',
-  },
-  container: {
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4),
-  },
   paper: {
     padding: theme.spacing(2),
     display: 'flex',
     overflow: 'auto',
     flexDirection: 'column',
-  },
-  fixedHeight: {
-    height: 560,
   },
   search: {
     position: 'relative',
@@ -158,14 +133,13 @@ function Baseline() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="fixed" className={clsx(classes.appBar, open && classes.appBarShift)}>
+      <AppBar elevation={0} position="sticky" className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
           <IconButton
             edge="start"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
-            className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
-          >
+            className={clsx(classes.menuButton, open && classes.menuButtonHidden)}>
             <MenuIcon />
           </IconButton>
           <div className={classes.title}>
@@ -185,8 +159,7 @@ function Baseline() {
                 root: classes.inputRoot,
                 input: classes.inputInput,
               }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
+              inputProps={{ 'aria-label': 'search' }}/>
           </div>
           <Tooltip title="GitHub Repo">
             <IconButton>
