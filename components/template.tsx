@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
@@ -45,6 +45,15 @@ function Template(props: { title: string, appData: object[], chartData: object[]
   const classes = useStyles();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
+  const initialState = {}
+  for (var e of props.appData) { initialState[e['name']] = false }
+
+  const [lineProps, setLineProps] = useState(initialState)
+  const toggleVisibility = (e: any) => {
+    setLineProps({ ...lineProps, [e['name']]: !lineProps[e['name']]})
+  }
+
+
   return (
     <React.Fragment>
       <Baseline/>
@@ -62,7 +71,7 @@ function Template(props: { title: string, appData: object[], chartData: object[]
           </Grid>
           <Grid item xs={12}>
             <Paper elevation={0} className={classes.paper}>
-              <Details appData={ props.appData }/>
+              <Details appData={props.appData} toggle={toggleVisibility}/>
             </Paper>
           </Grid>
         </Grid>

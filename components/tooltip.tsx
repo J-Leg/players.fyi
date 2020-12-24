@@ -25,7 +25,6 @@ const useStyles = makeStyles((theme: Theme) => ({
  * @Component
  */
 const CustomTooltip: any = function (props: TooltipProps): any {
-  if (!props.active) { return null }
   const { payload, label } = props
   const classes = useStyles()
 
@@ -46,7 +45,7 @@ const CustomTooltip: any = function (props: TooltipProps): any {
         {
           sortedPayload.map((elem) => {
             return (
-              <Grid container spacing={1}>
+              <Grid container key={elem.name} spacing={1}>
                 <Grid item xs={10}>{elem.name}</Grid>
                 <Grid item xs={2}>
                   <div className={classes.value}>{elem.value}</div>

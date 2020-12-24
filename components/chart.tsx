@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { Legend, ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
+import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 import Typography from '@material-ui/core/Typography';
 
 import { stringToRgb } from 'lib/chartUtils'

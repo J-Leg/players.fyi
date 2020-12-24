@@ -1,5 +1,8 @@
 import React from 'react';
-import { Table, TableBody, TableCell, TableRow } from '@material-ui/core';
+import { Table, TableBody, TableCell, TableRow, IconButton } from '@material-ui/core';
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
+
 import Typography from '@material-ui/core/Typography';
 
 /**
@@ -7,7 +10,8 @@ import Typography from '@material-ui/core/Typography';
  *
  * @Component
  */
-export default function Details({ appData }) {
+function Details({ appData, toggle}) {
+
   return (
     <React.Fragment>
       <Typography component="h2" variant="h6" color="textPrimary" gutterBottom>Games</Typography>
@@ -16,6 +20,11 @@ export default function Details({ appData }) {
           {appData.map((row: any) => (
             <TableRow key={row.name}>
               <TableCell>{row.name}</TableCell>
+              <TableCell>
+                <IconButton onClick={ () => toggle(row) }>
+                  <IconToggle isHidden={row.hide}/>
+                </IconButton>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -23,3 +32,9 @@ export default function Details({ appData }) {
     </React.Fragment>
   );
 }
+
+function IconToggle({ isHidden }) {
+  return isHidden ? <VisibilityIcon/> : <VisibilityOffIcon/>
+}
+
+export default Details

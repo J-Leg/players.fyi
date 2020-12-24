@@ -145,7 +145,7 @@ function Baseline() {
             <MenuIcon />
           </IconButton>
           <div className={classes.title}>
-            <Typography >
+            <Typography component={'span'}>
               <Button href="/" className={classes.titleButton}>
                 {leftBrace}
                 <Image src="/quelling_blade_invert.svg" width={iconSize} height={iconSize}/>
