@@ -10,7 +10,7 @@ import CustomTooltip from 'components/tooltip'
  *
  * @component
  */
-function Chart(props: { title: string, appData: object[], chartData: object[] }) {
+function Chart(props: { title: string, appData: object[], chartData: object[], active: object }) {
   return (
     <React.Fragment>
       <Typography component="h2" variant="h6" color="textPrimary" gutterBottom>{ props.title }</Typography>
@@ -21,7 +21,7 @@ function Chart(props: { title: string, appData: object[], chartData: object[] })
           <CartesianGrid />
           <XAxis stroke='#ffffff' dataKey="date" tick={<CustomizedAxisTick/>} />
           <YAxis stroke='#ffffff' />
-          <Tooltip content={<CustomTooltip />} animationEasing='ease-in-out' />
+          <Tooltip position={{ y: 0, x: 100 }} content={<CustomTooltip />} animationEasing='ease-in-out' />
           {
             props.appData.map((val: any) => {
               return (<Line key={`line_${val['name']}`}
@@ -29,7 +29,7 @@ function Chart(props: { title: string, appData: object[], chartData: object[] })
                             dataKey={val['name']}
                             stroke={stringToRgb(val['name'])}
                             dot={false}
-                            hide={val['hide']}
+                            hide={props.active[val['name']]}
                             />)
             })
           }
