@@ -88,7 +88,7 @@ function constructDateMap(metricType: string, tailLength: number): Map<string, E
 
   switch (metricType) {
     case 'daily_metrics':
-      dateIt.setDate(end.getDate() - 30)
+      dateIt.setDate(end.getDate() - tailLength)
       for (const d: Date = dateIt; d < end; d.setDate(d.getDate()+1)) {
         const newKey: string = buildDateKey(d, metricType)
         if (newKey) {
@@ -97,7 +97,7 @@ function constructDateMap(metricType: string, tailLength: number): Map<string, E
       }
       break
     case 'metrics':
-      dateIt.setMonth(end.getMonth() - 12)
+      dateIt.setMonth(end.getMonth() - tailLength)
       for (const d: Date = dateIt; d < end; d.setMonth(d.getMonth()+1)) {
         const newKey: string = buildDateKey(d, metricType)
         if (newKey) {

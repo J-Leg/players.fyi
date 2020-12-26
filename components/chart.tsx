@@ -21,7 +21,7 @@ function Chart(props: { title: string, appData: object[], chartData: object[], a
           <CartesianGrid />
           <XAxis stroke='#ffffff' dataKey="date" tick={<CustomizedAxisTick/>} />
           <YAxis stroke='#ffffff' />
-          <Tooltip position={{ y: 0, x: 100 }} content={<CustomTooltip />} animationEasing='ease-in-out' />
+          <Tooltip content={<CustomTooltip />} animationEasing='ease-in-out' />
           {
             props.appData.map((val: any) => {
               return (<Line key={`line_${val['name']}`}
