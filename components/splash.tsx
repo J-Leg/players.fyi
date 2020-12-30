@@ -25,7 +25,7 @@ function Splash() {
         <Grid item xs={12}>
           <Typography color='textPrimary' variant="h1" gutterBottom>players.fyi</Typography>
         </Grid>
-        <Grid item xs={12} spacing={6}>
+        <Grid item xs={12}>
           <Grid container spacing={1}>
             <Grid item xs>
               <Button variant="outlined" href="/stats/lastDays" className={classes.button}>

@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     borderRadius: 16,
     padding: 18,
     opacity: 0.75,
-    maxWidth: '400px',
+    width: '400px',
     alignItems: 'center',
   },
   value: {
