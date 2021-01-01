@@ -7,7 +7,7 @@ I've been collecting for some reason.
 - Completely static (regenerates daily -
 [read more](https://nextjs.org/blog/next-9-5#stable-incremental-static-regeneration))
 - Simple example of self-hosting fonts with Material UI
-- Customised Rechart components
+- Customised [Rechart](https://recharts.org) components
 
 
 ### What data?
@@ -15,4 +15,5 @@ Tracking library - [tracula](https://github.com/J-Leg/tracula)
 
 
 ### Deployment
-To be deployed on Vercel.
+[Vercel](https://vercel.com)
+
