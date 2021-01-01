@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { Legend, ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
+import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 import Typography from '@material-ui/core/Typography';
 
 import { stringToRgb } from 'lib/chartUtils'
@@ -10,7 +10,7 @@ import CustomTooltip from 'components/tooltip'
  *
  * @component
  */
-function Chart(props: { title: string, appData: object[], chartData: object[] }) {
+function Chart(props: { title: string, appData: object[], chartData: object[], active: object }) {
   return (
     <React.Fragment>
       <Typography component="h2" variant="h6" color="textPrimary" gutterBottom>{ props.title }</Typography>
@@ -29,7 +29,7 @@ function Chart(props: { title: string, appData: object[], chartData: object[] })
                             dataKey={val['name']}
                             stroke={stringToRgb(val['name'])}
                             dot={false}
-                            hide={val['hide']}
+                            hide={props.active[val['name']]}
                             />)
             })
           }

@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import clsx from 'clsx'
 import Image from 'next/image'
+import { useRouter } from 'next/router';
 
 import { fade, makeStyles } from '@material-ui/core/styles'
-import { AppBar, Badge, Button, Divider, Drawer, IconButton,
-  InputBase, List, Toolbar, Tooltip, Typography } from '@material-ui/core'
+import { AppBar, Badge, Button, Divider, Drawer, IconButton, InputBase, Link, List, Toolbar, Tooltip, Typography } from '@material-ui/core'
 import BugReportIcon from '@material-ui/icons/BugReport'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import GitHubIcon from '@material-ui/icons/GitHub'
@@ -111,6 +111,9 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
+  miscIcon: {
+    color: theme.palette.text.primary,
+  }
 }));
 
 const iconSize = 30
@@ -125,13 +128,26 @@ const rightBrace = "}"
  */
 function Baseline() {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
+  const [open, setOpen] = React.useState(false)
+
+  const handleDrawerOpen = () => { setOpen(true) }
+  const handleDrawerClose = () => { setOpen(false) }
+
+  const router = useRouter()
+  const [query, setQuery] = useState('')
+  const handleInput = setValue => e => setValue(e.target.value)
+
+  const preventDefault = f => e => {
+    e.preventDefault()
+    f(e)
+  }
+  const handleSubmit = preventDefault(() => {
+    router.push({
+      pathname: '/search',
+      query: {q: query},
+    })
+  })
+
 
   return (
     <div className={classes.root}>
@@ -145,7 +161,7 @@ function Baseline() {
             <MenuIcon />
           </IconButton>
           <div className={classes.title}>
-            <Typography >
+            <Typography component={'span'}>
               <Button href="/" className={classes.titleButton}>
                 {leftBrace}
                 <Image src="/quelling_blade_invert.svg" width={iconSize} height={iconSize}/>
@@ -157,26 +173,30 @@ function Baseline() {
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}/>
+            <form onSubmit={handleSubmit}>
+              <InputBase
+                placeholder="Search"
+                classes={{
+                  root: classes.inputRoot,
+                  input: classes.inputInput,
+                }}
+                onChange={handleInput(setQuery)}
+                inputProps={{ 'aria-label': 'search' }}/>
+            </form>
           </div>
           <Tooltip title="GitHub Repo">
             <IconButton>
-              <Badge>
-                <GitHubIcon onClick={event => window.location.href='https://github.com/J-Leg/players.fyi'} />
-              </Badge>
+                <Link target="_blank" href="https://github.com/J-Leg/players.fyi">
+                  <GitHubIcon className={classes.miscIcon}/>
+                </Link>
             </IconButton>
           </Tooltip>
           <Tooltip title="Found a bug?">
             <IconButton>
               <Badge>
-                <BugReportIcon
-                  onClick={event => window.location.href='https://github.com/J-Leg/players.fyi/issues/new'} />
+                <Link target="_blank" href="https://github.com/J-Leg/players.fyi/issues/new">
+                  <BugReportIcon className={classes.miscIcon}/>
+                </Link>
               </Badge>
             </IconButton>
           </Tooltip>
@@ -187,8 +207,7 @@ function Baseline() {
         classes={{
           paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
         }}
-        open={open}
-      >
+        open={open}>
         <div className={classes.toolbarIcon}>
           <IconButton onClick={handleDrawerClose}>
             <ChevronLeftIcon />

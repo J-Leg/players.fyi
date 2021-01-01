@@ -10,9 +10,9 @@ function Home(){
       <Baseline/>
       <main>
         <div/>
-          <Container maxWidth="lg">
-            <Splash />
-          </Container>
+        <Container maxWidth="lg">
+          <Splash />
+        </Container>
       </main>
     </React.Fragment>
   )
