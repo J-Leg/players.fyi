@@ -1,9 +1,5 @@
 import React from 'react'
-import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
-import Button from '@material-ui/core/Button'
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
+import { Box, Button, Link, Grid, Typography } from '@material-ui/core'
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import Image from 'next/image'
 
@@ -11,10 +7,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   button: {
     color: theme.palette.secondary.dark,
   },
-  title: {
-    color: theme.palette.text.primary,
-  },
-}));
+}))
 
 /**
  * Component for the focal point of a landing page
@@ -32,7 +25,7 @@ function Splash() {
         <Grid item xs={12}>
           <Typography color='textPrimary' variant="h1" gutterBottom>players.fyi</Typography>
         </Grid>
-        <Grid item xs={12} spacing={6}>
+        <Grid item xs={12}>
           <Grid container spacing={1}>
             <Grid item xs>
               <Button variant="outlined" href="/stats/lastDays" className={classes.button}>

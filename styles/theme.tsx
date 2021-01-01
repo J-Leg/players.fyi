@@ -30,6 +30,10 @@ const theme = createMuiTheme({
       fontSize: 14,
       fontFamily: 'iosevka-thin',
     },
+    subtitle2: {
+      fontSize: 18,
+      fontFamily: 'iosevka-thin',
+    },
   },
 });
 

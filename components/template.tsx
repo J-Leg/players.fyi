@@ -1,8 +1,5 @@
-import React from 'react'
-
-import Container from '@material-ui/core/Container'
-import Grid from '@material-ui/core/Grid'
-import Paper from '@material-ui/core/Paper'
+import React, { useState } from 'react'
+import { Container, Grid, Paper } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
 import clsx from 'clsx';
@@ -45,6 +42,12 @@ function Template(props: { title: string, appData: object[], chartData: object[]
   const classes = useStyles();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
+  const initialState = {}
+  for (var e of props.appData) { initialState[e['name']] = false }
+
+  const [lineProps, setLineProps] = useState(initialState)
+  const toggleVisibility = (e: any) => { setLineProps({ ...lineProps, [e['name']]: !lineProps[e['name']]}) }
+
   return (
     <React.Fragment>
       <Baseline/>
@@ -54,15 +57,20 @@ function Template(props: { title: string, appData: object[], chartData: object[]
           <Grid item xs={12}>
             <Paper elevation={0} className={fixedHeightPaper}>
               <Chart
-                title={ props.title }
-                appData={ props.appData }
-                chartData={ props.chartData }
+                title={props.title}
+                appData={props.appData}
+                chartData={props.chartData}
+                active={lineProps}
               />
             </Paper>
           </Grid>
           <Grid item xs={12}>
             <Paper elevation={0} className={classes.paper}>
-              <Details appData={ props.appData }/>
+              <Details
+                appData={props.appData} 
+                toggle={toggleVisibility}
+                active={lineProps}
+              />
             </Paper>
           </Grid>
         </Grid>
