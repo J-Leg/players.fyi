@@ -17,6 +17,7 @@ export const getStaticProps: GetStaticProps = async() => {
       chartData: chartifyMonthlyAvg(res),
       appData: appify(res),
     },
+    revalidate: REGEN_HOURS * SEC_IN_HOUR,
   };
 }
 
