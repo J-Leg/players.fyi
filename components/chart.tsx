@@ -14,14 +14,14 @@ function Chart(props: { title: string, appData: object[], chartData: object[], a
   return (
     <React.Fragment>
       <Typography component="h2" variant="h6" color="textPrimary" gutterBottom>{ props.title }</Typography>
-      <ResponsiveContainer width='100%'>
+      <ResponsiveContainer>
         <LineChart
           data={ props.chartData }
           margin={{ top: 20, right: 50, left: 50, bottom: 60 }}>
           <CartesianGrid />
           <XAxis stroke='#ffffff' dataKey="date" tick={<CustomizedAxisTick/>} />
           <YAxis stroke='#ffffff' />
-          <Tooltip content={<CustomTooltip />} animationEasing='ease-in-out' />
+          <Tooltip content={<CustomTooltip />} isAnimationActive={false} />
           {
             props.appData.map((val: any) => {
               return (<Line key={`line_${val['name']}`}
